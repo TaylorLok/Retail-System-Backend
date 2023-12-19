@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'sku' => $this->faker->unique()->bothify('??-########'),
             'name' => $this->faker->words(3, true),
-            'description' => $this->faker->paragraphs(3, true),
+            'description' => $this->faker->text(20),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'stock' => $this->faker->numberBetween(1, 1000),
 
