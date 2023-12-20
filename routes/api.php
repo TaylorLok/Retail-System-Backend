@@ -29,3 +29,9 @@ Route::delete('/delete/product/{id}', [App\Http\Controllers\ProductController::c
 Route::post('/register', [App\Http\Controllers\Api\RegisterController::class, 'register']);
 Route::post('/login', [App\Http\Controllers\Api\LoginController::class, 'login']);
 Route::post('/logout', [App\Http\Controllers\Api\LoginController::class, 'logout'])->middleware('auth:sanctum');
+
+Route::get('/categories', [App\Http\Controllers\CategoryController::class, 'index']);
+Route::get('/category/{id}', [App\Http\Controllers\CategoryController::class, 'show']);
+Route::post('/create/category', [App\Http\Controllers\CategoryController::class, 'store']);
+Route::put('/category/{id}/edit', [App\Http\Controllers\CategoryController::class, 'update']);
+Route::delete('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'delete']);
