@@ -26,3 +26,6 @@ Route::put('/product/{id}/edit', [App\Http\Controllers\ProductController::class,
 Route::delete('/delete/product/{id}', [App\Http\Controllers\ProductController::class, 'delete']);
 
 
+Route::post('/register', [App\Http\Controllers\Api\RegisterController::class, 'register']);
+Route::post('/login', [App\Http\Controllers\Api\LoginController::class, 'login']);
+Route::post('/logout', [App\Http\Controllers\Api\LoginController::class, 'logout'])->middleware('auth:sanctum');
