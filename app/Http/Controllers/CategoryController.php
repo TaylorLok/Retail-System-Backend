@@ -12,7 +12,8 @@ use App\Http\Requests\CategoryUpdateRequest;
 class CategoryController extends Controller
 {
     public function index(){
-        $categories = Category::all();
+
+        $categories = Category::orderBy('created_at', 'desc')->get();
 
         return response()->json(CategoryResource::collection($categories));
     }
