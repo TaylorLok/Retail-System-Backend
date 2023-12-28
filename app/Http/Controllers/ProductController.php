@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
     //returning all product in json format for api order by desc
     public function index()
     {
-        $products = Product::orderBy('created_at', 'desc')->get();
-
+        $products = Product::with('category')->orderBy('created_at', 'desc')->get();
         return response()->json($products, 200);
     }
 
@@ -22,7 +22,7 @@ class ProductController extends Controller
         if(is_null($product)){
             return response()->json(['message' => 'Product Not Found'], 404);
         }
-        return response()->json($product::find($id), 200);
+        return response()->json($product, 200);
     }
 
     //creating a new product
@@ -35,6 +35,7 @@ class ProductController extends Controller
                 'price' => 'required|numeric',
                 'description' => 'required',
                 'stock' => 'required|numeric',
+                'category_id' => 'required|numeric',
             ], [
                 'name.required' => 'The name field is required.',
                 'price.required' => 'The price field is required.',
@@ -42,6 +43,7 @@ class ProductController extends Controller
                 'description.required' => 'The description field is required.',
                 'stock.required' => 'The stock field is required.',
                 'stock.numeric' => 'The stock must be a numeric value.',
+                'category_id.required' => 'The category_id field is required.',
             ]);
 
             $product = Product::create($request->all());
@@ -71,6 +73,7 @@ class ProductController extends Controller
                 'price' => 'required|numeric',
                 'description' => 'required',
                 'stock' => 'required|numeric',
+                'category_id' => 'required|numeric',
             ], [
                 'name.required' => 'The name field is required.',
                 'price.required' => 'The price field is required.',
@@ -78,6 +81,7 @@ class ProductController extends Controller
                 'description.required' => 'The description field is required.',
                 'stock.required' => 'The stock field is required.',
                 'stock.numeric' => 'The stock must be a numeric value.',
+                'category_id.required' => 'The category_id field is required.',
             ]);
 
             $product->update($request->all());
