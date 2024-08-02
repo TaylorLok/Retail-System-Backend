@@ -19,6 +19,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index']);
+    Route::get('/{id}', [App\Http\Controllers\UserController::class, 'show']);
+    Route::post('/', [App\Http\Controllers\UserController::class, 'store']);
+    Route::put('/{id}', [App\Http\Controllers\UserController::class, 'update']);
+    Route::delete('/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+});
+
+Route::prefix('user-types')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserTypeController::class, 'index']);
+    Route::get('/{id}', [App\Http\Controllers\UserTypeController::class, 'show']);
+    Route::post('/', [App\Http\Controllers\UserTypeController::class, 'store']);
+    Route::put('/{id}', [App\Http\Controllers\UserTypeController::class, 'update']);
+    Route::delete('/{id}', [App\Http\Controllers\UserTypeController::class, 'destroy']);
+});
+
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']);
 Route::get('product/{id}', [App\Http\Controllers\ProductController::class, 'show']);
 Route::post('/create/product', [App\Http\Controllers\ProductController::class, 'store']);
