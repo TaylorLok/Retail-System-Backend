@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use HasFactory, SoftDeletes;
+    
     protected $fillable = ['name', 'price', 'description','stock', 'sku','category_id'];
 
     protected static function generateUniqueSku()
@@ -33,7 +35,4 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-
-    use HasFactory;
-    use SoftDeletes;
 }
