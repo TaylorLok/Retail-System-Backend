@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -16,7 +17,7 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        \Log::info($request->all());
+        Log::info($request->all());
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
@@ -25,7 +26,7 @@ class LoginController extends Controller
             return response()->json(['user' => $user, 'token' => $token], 200);
         }
 
-        \Log::info(Auth::attempt(['email' => $request->email, 'password' => $request->password]));
+        Log::info(Auth::attempt(['email' => $request->email, 'password' => $request->password]));
 
         throw ValidationException::withMessages([
             'email' => [trans('auth.failed')],
