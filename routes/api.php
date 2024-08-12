@@ -52,3 +52,4 @@ Route::get('/category/{id}', [App\Http\Controllers\CategoryController::class, 's
 Route::post('/create/category', [App\Http\Controllers\CategoryController::class, 'store']);
 Route::put('/category/{id}/edit', [App\Http\Controllers\CategoryController::class, 'update']);
 Route::delete('/delete/category/{id}', [App\Http\Controllers\CategoryController::class, 'delete']);
+Route::get('/category/search', [App\Http\Controllers\CategoryController::class, 'searchByName']);
