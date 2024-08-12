@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Services\CategoryService;
 use App\Http\Resources\CategoryResource;
-use App\Http\Requests\CategoryStoreRequest;
-use App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Requests\Category\CreateCategoryRequest;
 use App\Http\Requests\Category\DeleteCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
@@ -16,9 +13,7 @@ use App\Http\Requests\Category\UpdateCategoryRequest;
 class CategoryController extends Controller
 {
 
-    public function __construct(protected CategoryService $categoryService)
-    {
-    }
+    public function __construct(protected CategoryService $categoryService) {}
 
     public function index()
     {
