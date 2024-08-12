@@ -23,7 +23,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'Category name is required',
-            'name.string' => 'Category namemust be a string',
+            'name.string' => 'Category name must be a string',
             'name.max' => 'Category name cannot exceed 255 characters',
             'description.string' => 'Description must be a text',
         ];

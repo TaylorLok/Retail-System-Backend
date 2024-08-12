@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Contracts\UserTypeInterface;
+use App\Repositories\UserTypeRepository;
 use App\Http\Requests\User\CreateUserTypeRequest;
 use App\Http\Requests\User\DeleteUserTypeRequest;
 use App\Http\Requests\User\UpdateUserTypeRequest;
@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 
 class UserTypeService
 {
-
-    public function __construct(protected UserTypeInterface $userTypeRepository)
+    public function __construct(protected UserTypeRepository $userTypeRepository)
     {
     }
 

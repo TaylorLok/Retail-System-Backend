@@ -9,40 +9,40 @@ use App\Http\Requests\Category\DeleteCategoryRequest;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
-class UserTypeService
+class CategoryService
 {
 
     public function __construct(protected CategoryRepository $categoryRepository)
     {
     }
 
-    public function getAllUserTypes(): Collection
+    public function getAllCategories(): Collection
     {
-        return $this->userTypeRepository->getAllUserTypes();
+        return $this->categoryRepository->getAllCategories()->sortByDesc('created_at');
     }
 
-    public function getUserTypeById(int $id): ?UserType
+    public function getCategoryById(int $id): ?Category
     {
-        return $this->userTypeRepository->getUserTypeById($id);
+        return $this->categoryRepository->getCategoryById($id);
     }
 
-    public function getUserTypeByTitle(string $title): ?UserType
+    public function getCategoryByName(string $name)
     {
-        return $this->userTypeRepository->getUserTypeByTitle($title);
+        return $this->categoryRepository->getCategoryByName($name);
     }
 
-    public function createUserType(CreateUserTypeRequest $request): UserType
+    public function createCategory(CreateCategoryRequest $request): ?Category
     {
-        return $this->userTypeRepository->createUserType($request);
+        return $this->categoryRepository->createCategory($request);
     }
 
-    public function updateUserType(int $id, UpdateUserTypeRequest $request): ?UserType
+    public function updateCategory(int $id, UpdateCategoryRequest $request): ?Category
     {
-        return $this->userTypeRepository->updateUserType($id, $request);
+        return $this->categoryRepository->updateCategory($id, $request);
     }
 
-    public function deleteUserType(int $id, DeleteUserTypeRequest $request): bool
+    public function deleteCategory(int $id, DeleteCategoryRequest $request): bool
     {
-        return $this->userTypeRepository->deleteUserType($id, $request);
+        return $this->categoryRepository->deleteCategory($id, $request);
     }
 }

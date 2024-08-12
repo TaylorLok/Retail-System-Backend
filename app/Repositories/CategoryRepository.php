@@ -23,7 +23,7 @@ class CategoryRepository implements CategoryInterface
 
     public function getCategoryByName(string $name): ?Category
     {
-        return Category::findOrFail($name);
+        return Category::where('name', $name)->firstOrFail();
     }
 
     public function createCategory(CreateCategoryRequest $request): Category
@@ -33,14 +33,25 @@ class CategoryRepository implements CategoryInterface
 
     public function updateCategory(int $id, UpdateCategoryRequest $request): ?Category
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
+
+        if (!$category) {
+            return false;
+        }
+
         $category->update($request->validated());
+
         return $category;
     }
 
     public function deleteCategory(int $id, DeleteCategoryRequest $request): bool
     {
-        $category = Category::findOrFail($id);
+        $category = Category::find($id);
+
+        if (!$category) {
+            return false;
+        }
+
         return $category->delete();
     }
 }
